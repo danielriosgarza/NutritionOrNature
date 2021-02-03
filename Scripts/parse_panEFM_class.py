@@ -52,7 +52,7 @@ def buid_bipartite_graph(model):
     return G
 
 
-class MFS_run:
+class panEFM_run:
     def __init__(self, file_path, file_name):
         print(file_path, file_name)
         
@@ -92,7 +92,7 @@ class MFS_run:
     
 
 
-class MFS_family:
+class panEFM_family:
     def __init__(self, family_name, file_path, model_path):
         self.family = family_name
         self.file_path = file_path
@@ -115,7 +115,7 @@ class MFS_family:
         self.model_reac_freq=None
         self.gene_counts = None
         
-        self.mfs=None
+        self.panEFM=None
         
         self.include_reactome = None
         
@@ -128,17 +128,17 @@ class MFS_family:
         
     
     def __parse_run_files(self):
-        mfs1= MFS_run(self.file_path_fam, self.files[0])
+        panEFM1= panEFM_run(self.file_path_fam, self.files[0])
         
         
         
         
         
-        #sorter = np.argsort(mfs1.reactome)
-        self.reactome = mfs1.reactome.copy()
+        #sorter = np.argsort(panEFM1.reactome)
+        self.reactome = panEFM1.reactome.copy()
         
-        self.mfs={}
-        self.mfs[mfs1.environment]=mfs1.binary_m.copy()
+        self.panEFM={}
+        self.panEFM[panEFM1.environment]=panEFM1.binary_m.copy()
         
         
         self.environments = np.zeros(len(self.files))
@@ -146,13 +146,13 @@ class MFS_family:
         
         for i in range(len(self.files)):
             print (self.files[i])
-            mfs= MFS_run(self.file_path_fam, self.files[i])
+            panEFM= panEFM_run(self.file_path_fam, self.files[i])
             
-            self.environments[i] = float(mfs.environment)
-            self.freq_m[i]=mfs.freq_t
+            self.environments[i] = float(panEFM.environment)
+            self.freq_m[i]=panEFM.freq_t
             
             
-            self.mfs[mfs.environment]=mfs.binary_m.copy()
+            self.panEFM[panEFM.environment]=panEFM.binary_m.copy()
         
         
         
@@ -228,10 +228,10 @@ class MFS_family:
  
 ev =Env_ball(1000)
         
-#families = os.listdir('/home/daniel/generative_models/reactomes/vaginal_families')
+#families = os.listdir(pathToFamilyEFMs)
 
 #fam_mfs={}
 
 #for i in [families[0]]:
-#    fam_mfs[i]=MFS_family(i, '/home/daniel/generative_models/reactomes/vaginal_families/','/home/daniel/generative_models/models/vaginal_models' )
+#    fam_panEFM[i]=panEFM_family(i, pathToFamilyEFMs,pathToModels)
                 
