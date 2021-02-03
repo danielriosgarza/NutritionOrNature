@@ -89,10 +89,10 @@ class Ensemble_model:
 
 ########### usage ##############
         
-#em = Ensemble_model('Actinomycetaceae', '/home/daniel/generative_models/models/vaginal_models/Actinomycetaceae/gapfilled')
+#em = Ensemble_model('Aeromonadaceae',PathToModels)
 #ensembl = em.make_ensemble()
 #em.add_transporter(ensembl)
-#em.write_model(ensembl, '/home/daniel/generative_models/models/test_ensmbl.sbml')
+#em.write_model(ensembl, outputModel)
         
         
         
