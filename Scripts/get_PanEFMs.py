@@ -99,19 +99,12 @@ def get_run(model, reactions, transporters, env, output_file, max_it=1000,seed=N
 ############## USE ##########
 
 #eb=Env_ball(1000)
-  
 #transporters=eb.transporters[:]
 #random_environments=eb.matrix.copy()
-
 #model = cobra.io.read_sbml_model(PathToPanReactomeModel)
-
 #model.solver='gurobi'
 #reactions=[i.id for i in model.reactions if 'rxn' in i.id]
-
 #end_env=job_state*20
 #start_env=end_env-20
-
-
-
-#[get_run(model, reactions, transporters, random_environments[i], '/home/danielg/generative_models/plinc_runs/generative_models/random_model/'+family+'/' +family+'_randiter_'+str(i)+'.tsv', 1000, job_state*3) for i in xrange(start_env, end_env,1)]
+#[get_run(model, reactions, transporters, random_environments[i], 'pathToResults'+str(i)+'.tsv', 1000, job_state*3) for i in range(start_env, end_env,1)]
 
