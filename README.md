@@ -6,7 +6,7 @@ Below is a guide to enable readers to reproduce our results:
 
 1) Create family-level pan-reactomes:
 
-We begin with a database of draft reconstractions of strain-level genome-scale metabolic models (GSMMs) listed in [tableS2] (https://github.com/danielriosgarza/NutritionOrNature/blob/main/Table_S2.xlsx)
+We begin with a database of draft reconstractions of strain-level genome-scale metabolic models (GSMMs) listed in [TableS2](https://github.com/danielriosgarza/NutritionOrNature/blob/main/Table_S2.xlsx)
 
 2) The toy model example
 
