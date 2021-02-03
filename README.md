@@ -22,9 +22,11 @@ print(ev.metabolites)
 
 2) Create family-level pan-reactomes:
 
-We begin with a database of draft reconstractions of strain-level genome-scale metabolic models (GSMMs) listed in [TableS2](https://github.com/danielriosgarza/NutritionOrNature/blob/main/Table_S2.xlsx). These contain strains that belong to families with 25 or more sequenced genomes that belog to different species. The models were reconstructed using [ModelSEED](https://modelseed.org/) and are available on request.
+We begin with a database of draft reconstractions of strain-level genome-scale metabolic models (GSMMs) listed in [TableS2](https://github.com/danielriosgarza/NutritionOrNature/blob/main/Table_S2.xlsx). These contain strains that belong to families with 25 or more sequenced genomes that belong to different species. The models were reconstructed using [ModelSEED](https://modelseed.org/) and are available on request.
 
-To merge models belonging to the same families, we used the script [create_ensemble_model.py](xxx.xxx). An example of a model reconstructed for the Aeromonadaceae family that is extensively described in the manuscript is available here: [Aeromonadaceae_reactome](xxxx.xxx)
+To merge models belonging to the same families, we used the script [create_ensemble_model.py](xxx.xxx). The script contains and example of usage in the bottom. An example of a model reconstructed for the Aeromonadaceae family that is extensively described in the manuscript is available here: [Aeromonadaceae_reactome](xxxx.xxx). 
+
+
 
 
 3) The toy model example
