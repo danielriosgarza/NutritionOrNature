@@ -47,7 +47,7 @@ def remove_reaction(orig_obj, model, reaction):
         return 1.0
     
 
-def get_mfs(map_d, ordered_reactions, model, cuttof):
+def get_panEFM(map_d, ordered_reactions, model, cuttof):
     mod= model.copy()
     
     essential_r = np.zeros(len(map_d))
@@ -62,7 +62,7 @@ def get_mfs(map_d, ordered_reactions, model, cuttof):
     
     return essential_r
 
-def get_mfs_dist(model, reactions, transporters, env, max_it=1000):
+def get_panEFM_dist(model, reactions, transporters, env, max_it=1000):
     
     rc=reactions[:]
     map_d = {reactions[i]: i for i in xrange(len(reactions))}
@@ -73,8 +73,8 @@ def get_mfs_dist(model, reactions, transporters, env, max_it=1000):
     
     for i in xrange(max_it):
         np.random.shuffle(rc)
-        mfs=get_mfs(map_d, rc, model, 0.01)
-        all_iters.append(mfs)
+        panEFM=get_panEFM(map_d, rc, model, 0.01)
+        all_iters.append(panEFM)
     return all_iters
         
 
@@ -92,7 +92,7 @@ def get_results(reactions, all_iters, file_name):
 
 def get_run(model, reactions, transporters, env, output_file, max_it=1000,seed=None):
     np.random.seed(seed)
-    all_iters= get_mfs_dist(model, reactions, transporters, env, max_it)
+    all_iters= get_panEFM_dist(model, reactions, transporters, env, max_it)
     get_results(reactions, all_iters, output_file)
 
 
@@ -103,7 +103,7 @@ def get_run(model, reactions, transporters, env, output_file, max_it=1000,seed=N
 #transporters=eb.transporters[:]
 #random_environments=eb.matrix.copy()
 
-#model = cobra.io.read_sbml_model('/home/danielg/generative_models/plinc_runs/generative_models/vaginal_models/' + family + '/' + family + '.ensemble.sbml')
+#model = cobra.io.read_sbml_model(PathToPanReactomeModel)
 
 #model.solver='gurobi'
 #reactions=[i.id for i in model.reactions if 'rxn' in i.id]
