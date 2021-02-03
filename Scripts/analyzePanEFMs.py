@@ -17,8 +17,8 @@ import scipy.spatial as sps
 import numpy as np
 
 
-from parse_MFS_class import MFS_family
-from parse_MFS_class import apply_environment
+from parse_panEFM_class import panEFM_family
+from parse_panEFM_class import apply_environment
 from Env_ball_class import Env_ball
 
 def cosine(a,b):
@@ -107,7 +107,7 @@ def main(family):
     data_folder = os.path.join(Path(os.getcwd()).parents[1], 'data')
 
     #load pickles
-    fam_mfs=pickle.load(open(data_folder + '/pickles/' + family + '.mfs.pkl', 'rb'))
+    fam_panEFM=pickle.load(open(data_folder + '/pickles/' + family + '.panEFM.pkl', 'rb'))
     
     fam_associate =pickle.load(open(data_folder + '/pickles/' + family + '.associate.pkl', 'rb'))
 
@@ -133,7 +133,7 @@ def main(family):
            
     #get only the included reactions
     
-    firs = {i:fam_mfs.mfs[i][fam_mfs.include_reactome].T for i in fam_mfs.mfs}
+    firs = {i:fam_panEFM.panEFM[i][fam_panEFM.include_reactome].T for i in fam_panEFM.panEFM}
     
     # Niche: [E][N1][M]
     
@@ -157,11 +157,11 @@ def main(family):
     
     #Models: [s]
     
-    models = np.array([i.replace('.sbml','') for i in fam_mfs.model_files])
+    models = np.array([i.replace('.sbml','') for i in fam_panEFM.model_files])
     
     # Model reactomes: [s][r]
-    model_reactomes = fam_mfs.model_reactomes.copy()
-    model_reactomes = model_reactomes.T[fam_mfs.include_reactome].T
+    model_reactomes = fam_panEFM.model_reactomes.copy()
+    model_reactomes = model_reactomes.T[fam_panEFM.include_reactome].T
     
     #Model sample: [d][r]
     
@@ -381,10 +381,3 @@ def main(family):
             'dn_reactions': dn_reactions, 'ds_reactions':ds_reactions}
     pickle.dump(store, open(data_folder + '/pickles/' + family + '.secondaryDS.pkl', 'wb'))
     
-fams = os.listdir('/mnt/comics/danielg/metabolic_models/git/data')
-
-fams.remove('pickles')
-import gc
-for fam in fams:
-    main(fam)
-    gc.collect()
