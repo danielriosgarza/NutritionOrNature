@@ -89,10 +89,11 @@ class PanReactome_model:
 
 ########### usage ##############
         
+#from create_panReactome_model import PanReactome_model
 #em = PanReactome_model('Aeromonadaceae',PathToModels)
-#ensembl = em.make_panReactome()
-#em.add_transporter(ensembl)
-#em.write_model(ensembl, outputModel)
+#panReac = em.make_panReactome()
+#em.add_transporter(panReac)
+#em.write_model(panReac, outputModel)
         
         
         
