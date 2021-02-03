@@ -8,7 +8,7 @@ from cobra import Model, Reaction, Metabolite
 from Env_ball_class import Env_ball
 
 
-class Ensemble_model:
+class PanReactome_model:
     '''
     Create a model from a pool of reactions from related organisms.
     
@@ -42,7 +42,7 @@ class Ensemble_model:
         mc.optimize()
         return mc    
             
-    def make_ensemble(self):
+    def make_panReactome(self):
         #open the first model
         model = cobra.io.read_sbml_model(os.path.join(self.path, self.files[0]))
         #join all non exchange reactopms from models
@@ -89,8 +89,8 @@ class Ensemble_model:
 
 ########### usage ##############
         
-#em = Ensemble_model('Aeromonadaceae',PathToModels)
-#ensembl = em.make_ensemble()
+#em = PanReactome_model('Aeromonadaceae',PathToModels)
+#ensembl = em.make_panReactome()
 #em.add_transporter(ensembl)
 #em.write_model(ensembl, outputModel)
         
