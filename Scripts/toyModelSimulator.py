@@ -50,11 +50,11 @@ def replication_w_error(p_in, p_del, env, model_reactions,phenotype, r_dict, poo
     return mod,pc
             
 
-def moran_process(population, mfs, env, iter_n, p_in,p_del, phenotype, r_dict):
-    mfs = list(mfs.keys())
+def moran_process(population, panEFM, env, iter_n, p_in,p_del, phenotype, r_dict):
+    panEFM = list(panEFM.keys())
     pop = {}
     for i in range(population):
-        pop[i] = set(np.random.choice(mfs))
+        pop[i] = set(np.random.choice(panEFM))
     pop_i = pop.copy()
     for i in range(iter_n):
         
@@ -293,7 +293,7 @@ def autoIncrement():
  return str(rec).zfill(4)
 
 
-def get_mfs(reactions, env, phenotype, iterations):
+def get_panEFM(reactions, env, phenotype, iterations):
     
     rd = {i.name:i for i in reactions}
     
@@ -301,7 +301,7 @@ def get_mfs(reactions, env, phenotype, iterations):
     
     rl = reaction_list[:]
     
-    mfs={}
+    panEFM={}
     envs={}
     for i in range(iterations):
         np.random.shuffle(rl)
@@ -328,23 +328,23 @@ def get_mfs(reactions, env, phenotype, iterations):
         m = Model(r)
         
         
-        if frozenset(rlt) in mfs:
-            mfs[frozenset(rlt)]+=1
+        if frozenset(rlt) in panEFM:
+            panEFM[frozenset(rlt)]+=1
             if m.ex_reactants not in envs[frozenset(rlt)]:
                 envs[frozenset(rlt)].append(m.ex_reactants)
         else:
-            mfs[frozenset(rlt)]=1
+            panEFM[frozenset(rlt)]=1
             envs[frozenset(rlt)] = [m.ex_reactants]
                
-    return mfs,envs
+    return panEFM,envs
     
-def get_freq(reaction_list, mfs):
+def get_freq(reaction_list, panEFM):
     f = {i:0 for i in reaction_list}
     
-    for i_set in mfs:
+    for i_set in panEFM:
         
         for reaction in i_set:
-            f[reaction]+=1./len(mfs)
+            f[reaction]+=1./len(panEFM)
     return np.array([f[i] for i in reaction_list])    
     
 def get_average_env(env_vec, env_d):
@@ -467,7 +467,7 @@ m.is_growing(ex_mets, phenotype)
 
 
 
-r,e=get_mfs(reactions, ex_mets, phenotype, 20000)
+r,e=get_panEFM(reactions, ex_mets, phenotype, 20000)
 
 
 
@@ -492,9 +492,9 @@ for i in range(20000):
         if m.is_growing(env,phenotype):
             env_that_sup_growth.append(j)
             
-            mfs,environment = get_mfs(reactions, env, phenotype, 1000)
+            panEFM,environment = get_panEFM(reactions, env, phenotype, 1000)
             envs[i]=get_average_env(emet, environment)
-            rf[i] = get_freq(k, mfs)
+            rf[i] = get_freq(k, panEFM)
 
 
 
@@ -590,7 +590,11 @@ for i, reac in enumerate(envd_prof.T):
     association_d[envd_reactions[i]] = assign_to_rank(v, pa,na)
         
 g= build_association_network(association_d, envd_reactions, dm)
-nx.write_graphml(g, '/home/daniel/studies/generative_models/git_rep/reaction_set_evolution/files/networks/toy_model_associations.graphml')
+
+
+#to save the network
+
+#nx.write_graphml(g, FileToSave)
 
 
 reacs = list(react_dict.keys())
@@ -598,7 +602,7 @@ predicted = []
 average = []
 predicted_environments=[]
 true_used_env=[]
-mfs_avg_env = []
+panEFM_avg_env = []
 evolved_freq = []    
 
 # evolve conditioned to an environment
@@ -606,9 +610,9 @@ for i in range(len(env_that_sup_growth)):
     print(i)
     j=env_that_sup_growth[i]
     env = emet[j.astype(np.bool)]
-    mfs,environment = get_mfs(reactions, env, phenotype, 1000)
+    panEFM,environment = get_panEFM(reactions, env, phenotype, 1000)
     envs=get_average_env(emet, environment)
-    mfs_avg_env.append(envs)
+    panEFM_avg_env.append(envs)
     pop_i, pop = moran_process(1000, r, env, 1000000,.05,.5,phenotype, react_dict)
     g1, g2 = [],[]
     
@@ -677,6 +681,8 @@ for i in range(len(env_that_sup_growth)):
 
     predicted_environments.append(p)
 
+
+store = {'full_freq_m': full_freq_m, 'diff_freq_m':diff_freq_m, 'envd_prof':envd_prof, 'envd_reactions': envd_reactions,'used_environment':used_environment, 'ex_mets':ex_mets, 'dm':dm, 'diff_used_env':diff_used_env,         'dm_prof':dm_prof, 'x':x, 'y':y, 'predicted':predicted, 'average':average, 'predicted_environment':predicted_environments,'true_used_env':true_used_env, 'panEFM_avg_env': panEFM_avg_env, 'evolved_freq':evolved_freq, 'cosine_dict':cosine_dict, 'met_filter1':m_diff_used_env>0.005, 'met_filter2':s_clss_ue!=0, 'reac_filter1':m_diff_freq_m>.005, 'reac_filter2':s_clss_fm!=0, 'evolved_freq':evolved_freq}
+
 data_folder = os.path.join(Path(os.getcwd()).parents[1], 'data')
-store = {'full_freq_m': full_freq_m, 'diff_freq_m':diff_freq_m, 'envd_prof':envd_prof, 'envd_reactions': envd_reactions,'used_environment':used_environment, 'ex_mets':ex_mets, 'dm':dm, 'diff_used_env':diff_used_env,         'dm_prof':dm_prof, 'x':x, 'y':y, 'predicted':predicted, 'average':average, 'predicted_environment':predicted_environments,'true_used_env':true_used_env, 'mfs_avg_env': mfs_avg_env, 'evolved_freq':evolved_freq, 'cosine_dict':cosine_dict, 'met_filter1':m_diff_used_env>0.005, 'met_filter2':s_clss_ue!=0, 'reac_filter1':m_diff_freq_m>.005, 'reac_filter2':s_clss_fm!=0, 'evolved_freq':evolved_freq}
 pickle.dump(store, open(data_folder + '/pickles/toy_model.pkl', 'wb'))
