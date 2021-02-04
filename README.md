@@ -8,7 +8,7 @@ Below is a guide to enable readers to reproduce our results:
 
 We simulated pan-reactomes in a random ball containing the relative concentration of metabolites. The environments we used in the manuscript are listed in [TableS3](https://github.com/danielriosgarza/NutritionOrNature/blob/main/Table_S3.xlsx). We used the script: [generate_env_ball.py](https://github.com/danielriosgarza/NutritionOrNature/blob/main/Scripts/generate_env_ball.py) to generate these environments.
 
-An example of the expected result of this script is available [here](xxx.xxx)
+An example of the expected result of this script is available [here](https://github.com/danielriosgarza/NutritionOrNature/blob/main/Files/env_ball_1000.tsv)
 
 The random environment generated is handled by importing the [Env_ball_class.py](https://github.com/danielriosgarza/NutritionOrNature/blob/main/Scripts/Env_ball_class.py) script, for example:
 
@@ -36,7 +36,7 @@ em.write_model(panReac, outputModel)
 
 ```
 
-An example of a model reconstructed for the Aeromonadaceae family that is extensively described in the manuscript is available here: [Aeromonadaceae_reactome](xxxx.xxx). 
+An example of a model reconstructed for the Aeromonadaceae family that is extensively described in the manuscript is available here: [Aeromonadaceae_reactome](https://github.com/danielriosgarza/NutritionOrNature/blob/main/Files/Aeromonadaceae.ensembl.sbml). 
 
 
 3) The toy model example
