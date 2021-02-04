@@ -1,8 +1,8 @@
 # NutritionOrNature
 
-Repository of Figures and scripts used in the manuscript: [Nutrition or nature: disentangling the complex forces shaping prokaryote pan-genomes](https://www.biorxiv.org/content/10.1101/2020.12.14.422685v3)
+Repository of figures and scripts used in the manuscript: [Nutrition or nature: disentangling the complex forces shaping prokaryote pan-genomes](https://www.biorxiv.org/content/10.1101/2020.12.14.422685v3)
 
-Below is a guide to enable readers to reproduce our results. The sripts depend on python3 and 2.7, cobrapy, gurobi, numpy, sklearn, and scipy. 
+Below is a guide to enable readers to reproduce our results. The scripts depend on python3 and 2.7, and the packages cobrapy, gurobi, numpy, sklearn, and scipy. 
 
 
 1) The environment ball:
@@ -23,7 +23,7 @@ print(ev.metabolites)
 
 2) Create family-level pan-reactomes:
 
-We begin with a database of draft reconstractions of strain-level genome-scale metabolic models (GSMMs) listed in [TableS2](https://github.com/danielriosgarza/NutritionOrNature/blob/main/Table_S2.xlsx). The models were reconstructed using [ModelSEED](https://modelseed.org/) and are available on request.
+We begin with a database of draft reconstructions of strain-level genome-scale metabolic models (GSMMs) listed in [TableS2](https://github.com/danielriosgarza/NutritionOrNature/blob/main/Table_S2.xlsx). The models were reconstructed using [ModelSEED](https://modelseed.org/) and are available on request.
 
 To create family-level pan-reactomes we used the script [create_panReactome_model.py](https://github.com/danielriosgarza/NutritionOrNature/blob/main/Scripts/create_panReactome_model.py). 
 
@@ -47,7 +47,7 @@ The code for building and simulating the toy model is available through the scri
 4) generate panEFMs
 
 To generate panEFMs from a pan-reactome (generated in step2) use the script [get_PanEFMs.py](https://github.com/danielriosgarza/NutritionOrNature/blob/main/Scripts/get_PanEFMs.py). 
-This script also takes several hours to complete, and example of usage with 20 preocessor jobs follows:
+This script also takes several hours to complete in a computer cluster. An example of usage with 20 preocessor jobs follows:
 
 ```python
 
