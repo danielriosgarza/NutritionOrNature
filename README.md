@@ -2,7 +2,8 @@
 
 Repository of Figures and scripts used in the manuscript: [Nutrition or nature: disentangling the complex forces shaping prokaryote pan-genomes](https://www.biorxiv.org/content/10.1101/2020.12.14.422685v3)
 
-Below is a guide to enable readers to reproduce our results:
+Below is a guide to enable readers to reproduce our results. The sripts depend on python3 and 2.7, cobrapy, gurobi, numpy, sklearn, and scipy. 
+
 
 1) The environment ball:
 
