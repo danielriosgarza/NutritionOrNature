@@ -24,10 +24,10 @@ import numpy as np
 data_folder = os.path.join(Path(os.getcwd()))
 
 #file_folder =  os.path.join(Path(os.getcwd()).parents[0], 'files')
-fam_mfs=pickle.load(open(data_folder + '/all_fams.tertiaryDS.pkl', 'rb'))
+fam_panEFM=pickle.load(open(data_folder + '/all_fams.tertiaryDS.pkl', 'rb'))
 
 
-families = np.array(list(fam_mfs.keys()))
+families = np.array(list(fam_panEFM.keys()))
 
 
 
@@ -38,21 +38,21 @@ for i,v in enumerate(families):
     x, y, z = [], [], []
     mets=[]
     
-    for r in fam_mfs[v]['reac_met_freq_association']:
-        x.append(fam_mfs[v]['freq_reactions'][r])
+    for r in fam_panEFM[v]['reac_met_freq_association']:
+        x.append(fam_panEFM[v]['freq_reactions'][r])
     
     sel =np.random.choice(np.arange(1000), replace=False, size=200)
     x = np.array(x).T
     
-    for m in fam_mfs[v]['y_metabolome']:
-        y.append(fam_mfs[v]['freq_metabolite_use'][m])
+    for m in fam_panEFM[v]['y_metabolome']:
+        y.append(fam_panEFM[v]['freq_metabolite_use'][m])
         mets.append(m)
         
     
     y = np.array(y).T
     
-    for r in fam_mfs[v]['reac_met_freq_association']:
-        z.append(fam_mfs[v]['freq_mod_reactions'][r])
+    for r in fam_panEFM[v]['reac_met_freq_association']:
+        z.append(fam_panEFM[v]['freq_mod_reactions'][r])
     z=np.array(z)
     from sklearn.linear_model import MultiTaskElasticNetCV as en
     enet=en(cv=2, n_jobs=5,verbose=1, max_iter=10000)
