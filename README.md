@@ -44,6 +44,7 @@ An example of a model reconstructed for the Aeromonadaceae family that is extens
 The code for building and simulating the toy model is available through the script [ToyModelSimulator.py](https://github.com/danielriosgarza/NutritionOrNature/blob/main/Scripts/toyModelSimulator.py). The script can be runned directly in a python environment and generates a pickle that contains a dictionary named "store" with all the relevant information about the toy model simulation. The script takes some hours to complete (due to the Moran process).
 
 4) generate panEFMs
+
 To generate panEFMs from a pan-reactome (generated in step2) use the script [get_PanEFMs.py](https://github.com/danielriosgarza/NutritionOrNature/blob/main/Scripts/get_PanEFMs.py). 
 This script also takes several hours to complete, and example of usage with 20 preocessor jobs follows:
 
@@ -63,4 +64,8 @@ start_env=end_env-20
 
 4) Analyze the panEFMs
 
-5) Get Elastic net predictions
+To analyze panEFMs generated from a family-level pan-reactome we used the script [analyzePanEFMs.py](https://github.com/danielriosgarza/NutritionOrNature/blob/main/Scripts/analyzePanEFMs.py). This script first calls the class [parse_panEFM_class.py](https://github.com/danielriosgarza/NutritionOrNature/blob/main/Scripts/parse_panEFM_class.py) that parses the simulation results and gets all the necessary information from strain-level models, next a python dictionary with all the metrics (distances, scores, etc is stored in a pickle).
+
+
+5) Get Elastic net prediction
+An illustrative example of the code we used to build elastic net models is the script [EN_Predictions.py](https://github.com/danielriosgarza/NutritionOrNature/blob/main/Scripts/EN_Predictions.py).
