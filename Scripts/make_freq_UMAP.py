@@ -1,6 +1,7 @@
 from pylab import *
 import scipy.stats as sts
 import scipy.spatial as sps
+from pathlib import Path
 import pickle
 import numpy as np
 import os
@@ -10,9 +11,13 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 plt.style.use('ggplot')
 
+
+data_folder = os.path.join(Path(os.getcwd()).parents[0], 'Files', 'data')
+
+
 phylum={}
 order={}
-with open('C:/Users/danie/Documents/random_work_stuff/home/home/Files/strainData.txt') as f:
+with open(os.path.join(data_folder, 'strainData.txt')) as f:
     h=f.readline().strip().split('\t')
     for line in f:
         a=line.strip().split('\t')
@@ -33,9 +38,8 @@ def make_umap(data_m, decomposition=None, n_neighbors=20, min_dist=.1, metric='c
     
     return trans
 
-path = 'C:/Users/danie/Documents/random_work_stuff/'
 
-store =  pickle.load(open(path+'all_fams.tertiaryDS.pkl', 'rb'))
+store = pickle.load(open(data_folder + '/pickles/all_fams.tertiaryDS.pkl', 'rb'))
 store.pop('Bacillaceae_plus_Anaplasmataceae', None)
 
 
@@ -48,7 +52,7 @@ families = np.array(list(store.keys()))
 nb={}
 
 
-with open('C:/Users/danie/Documents/random_work_stuff/home/home/Tables/production_tables/family.niche_breadth_score.tsv') as f:
+with open(os.path.join(data_folder, 'family.niche_breadth_score.tsv')) as f:
     header = f.readline().strip().split('\t')
     for line in f:
         a=line.strip().split('\t')
@@ -99,6 +103,10 @@ data_reactions=data.T
 #     c = np.random.uniform(size = sum(v==0))
 #     data_reactions[i][data_reactions[i]==0] = c
     
+
+###UMAP Reactions#####
+
+
 reactions_umap =  make_umap(data_reactions, n_neighbors=200, min_dist=.5, metric='minkowski')
 
 
@@ -117,15 +125,12 @@ for i,fam in enumerate(families):
 legend(loc='lower right', ncol=4,bbox_to_anchor=(1.1, -1.0))
 
 
-savefig('C:/Users/danie/Documents/random_work_stuff/home/home/Figures/Production_Figures/FIRS_reaction_f_new.tiff', dpi =300,bbox_inches="tight")
+#savefig(pathToFig, dpi =300,bbox_inches="tight")
 show()
 
+############################################
 
-
-
-
-
-with open('C:/Users/danie/Documents/random_work_stuff/home/home/Tables/production_tables/EN_pred.tsv') as f:
+with open(os.path.join(data_folder, 'EN_pred.tsv')) as f:
     fms = f.readline().strip().split('\t')[1::]
     
     en_preds={i:{} for i in fms}
@@ -160,7 +165,7 @@ for i,v in enumerate(metabolites):
 
 data_metabolites=data.T
 
-
+######Metabolite UMAP####################################
 
 metabolites_umap =  make_umap(data_metabolites,n_neighbors=20, min_dist=.5, metric='minkowski')
 
@@ -171,16 +176,11 @@ for i,fam in enumerate(families):
 
 legend(loc='lower right', ncol=4,bbox_to_anchor=(1.1, -1.0))
 
-#savefig('C:/Users/danie/Documents/random_work_stuff/home/home/Figures/Production_Figures/FIRS_metabolite_f.tiff', dpi =300,bbox_inches="tight")
+#savefig(pathToFig, dpi =300,bbox_inches="tight")
+
 show()
 
-
-
-
-
-
-
-
+######################################################
 
 # d={i:[] for i in range(25)}
 
@@ -218,6 +218,7 @@ show()
 # xticks(np.arange(1,26), ts, fontsize=10, rotation=90)
 # yticks(linspace(0,1,8), ts2, fontsize=10)
 
-# savefig('C:/Users/danie/Documents/random_work_stuff/home/home/Figures/Production_Figures/Freq_in_models.tiff', dpi =300,bbox_inches="tight")
+# #savefig(pathToFig, dpi =300,bbox_inches="tight")
+
 # show()
 
