@@ -36,23 +36,30 @@ def reaction_violin_plot(store_3, family):
     
     x_efm = []
     y_eds = []
+    x_efm_0 = []
+    y_eds_0 = []
     
     for i in reacs:
+        #if eds[i]>0.001:
         eds_i = [eds[i]]*1000
         y_eds += eds_i
         x_efm += list(efms[i])
+        # else:
+        #     eds_i = [eds[i]]*1000
+        #     y_eds_0 += eds_i
+        #     x_efm_0 += list(efms[i])
         
-    sample = np.random.choice(np.arange(len(x_efm)), replace=0, size = 100000)
+    sample = np.random.choice(np.arange(len(x_efm)), replace=0, size = 10000)
+    #sample0 = np.random.choice(np.arange(len(x_efm_0)), replace=0, size = 10000)
+
     
     x = np.array(x_efm)[sample]
     y = np.array(y_eds)[sample]
-    corr=sts.pearsonr(x,y)
+    #x0 = np.array(x_efm_0)[sample0]
+    #y0 = np.array(y_eds_0)[sample0]
     
-    tx = ' (Pearsonr = ' + '{:#.2g}'.format(corr[0]) + '; adjP =' + '{:.1e}'.format(corr[1]*46) + ')'
-    print(tx)
-
     
-    return x,y,tx
+    return x,y#,x0, y0
 
 data_folder = os.path.join(Path(os.getcwd()).parents[0], 'Files', 'data')
 
@@ -107,7 +114,7 @@ nb_pages = int(np.ceil(nb_plots / float(nb_plots_per_page)))
 grid_size = (nb_plots_per_page, 2)
  
 for i, samples in enumerate(data):
-    x,y, tx = reaction_violin_plot(store, samples)
+    x,y = reaction_violin_plot(store, samples)
     # Create a figure instance (ie. a new page) if needed
     if i % nb_plots_per_page == 0:
         fig = plt.figure(figsize=(8.27, 11.69), dpi=100)
@@ -119,8 +126,9 @@ for i, samples in enumerate(data):
         plt.subplot2grid(grid_size, (i % nb_plots_per_page-1, 1))
     
     
-    sns.kdeplot(x, y, color='r', shade=True, cmap="Blues", shade_lowest=False)
-    plt.title(str(i+1)+ '. ' + samples + '\n' + tx, fontsize=10)
+    sns.kdeplot(x, y, color='b', shade=True, cmap="Blues", shade_lowest=False)
+    #sns.kdeplot(x0, y0, color='r', shade=True, cmap="Reds", shade_lowest=False)
+    plt.title(str(i+1)+ '. ' + samples, fontsize=10)
     plt.xlabel('Frequency in panEFMs', fontsize=8)
     plt.ylabel('EDS', fontsize=8)
     

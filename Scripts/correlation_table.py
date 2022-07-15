@@ -29,7 +29,7 @@ def corr_sig(df=None):
 
 
 def plot_cor_matrix(corr, mask=None):
-    f, ax = plt.subplots(figsize=(11, 9))
+    f, ax = plt.subplots(figsize=(14, 11))
     sns.heatmap(corr, ax=ax,
                 mask=mask,
                 # cosmetics
@@ -269,9 +269,10 @@ corr = df.corr()
 p_values = corr_sig(df) 
 ti = np.triu_indices_from(p_values)
 pvs = p_values[ti].flatten()
-corrected = mt(pvs, alpha=0.0005, method='fdr_bh')
+corrected = mt(pvs, alpha=0.05, method='fdr_bh')
 p_values[ti] = corrected[1]
 np.fill_diagonal(p_values, 1)
 mask = np.invert(np.tril(p_values<0.05))    
 plot_cor_matrix(corr,mask)
 
+savefig(os.path.join(Path(os.getcwd()).parents[0], 'Files', 'figures', 'Figure4.pdf'), dpi=600, tight_layot=1)
