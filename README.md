@@ -61,7 +61,7 @@ print(store['Enterobacteriaceae']['y_metabolome']) #shows the exchange reaction 
 print(store['Enterobacteriaceae']['x_reactome']) #shows the reaction ids
 ```
 
-To link reaction ids to reaction objects, we suggest to use the excellent [biochemistry] (https://github.com/ModelSEED/ModelSEEDDatabase/tree/master/Biochemistry) scripts from modelseed 
+To link reaction ids to reaction objects, we suggest to use the excellent [biochemistry](https://github.com/ModelSEED/ModelSEEDDatabase/tree/master/Biochemistry) scripts from modelseed 
 
 ```python
 import Compounds
@@ -82,7 +82,7 @@ reactions_dict = reactions_helper.loadReactions() #dictionary linked to mSEED id
 
 The code for building and simulating the toy model is available through the script [ToyModelSimulator.py](https://github.com/danielriosgarza/NutritionOrNature/blob/main/Scripts/toyModelSimulator.py). The script can be runned directly in a python environment and generates a pickle that contains a dictionary named "store" with all the relevant information about the toy model simulation. The script takes some hours to complete (due to the Moran process).
 
-To generate the same Figures run the script [toy_model_Figures.py] (https://github.com/danielriosgarza/NutritionOrNature/blob/main/Scripts/toy_model_Figures.py)
+To generate the same Figures run the script [toy_model_Figures.py](https://github.com/danielriosgarza/NutritionOrNature/blob/main/Scripts/toy_model_Figures.py)
 
 4) generate panEFMs
 
@@ -107,7 +107,7 @@ start_env=end_env-20
 
 To analyze panEFMs generated from a family-level pan-reactome we used the script [analyzePanEFMs.py](https://github.com/danielriosgarza/NutritionOrNature/blob/main/Scripts/analyzePanEFMs.py). This script first calls the class [parse_panEFM_class.py](https://github.com/danielriosgarza/NutritionOrNature/blob/main/Scripts/parse_panEFM_class.py) that parses the simulation results and gets all the necessary information from strain-level models, next a python dictionary with all the metrics (distances, scores, etc is stored in a pickle).
 
-To make the UMAP Figures, we used the script [make_freq_UMAP.py] (https://github.com/danielriosgarza/NutritionOrNature/blob/main/Scripts/make_freq_UMAP.py)
+To make the UMAP Figures, we used the script [make_freq_UMAP.py](https://github.com/danielriosgarza/NutritionOrNature/blob/main/Scripts/make_freq_UMAP.py)
 
 5) Get Elastic net prediction
 
@@ -115,6 +115,6 @@ An illustrative example of the code we used to build elastic net models is the s
 
 6) Miscellaneous
 
-To make the heatmap in Figure 4, we used the script [correlation_table.py] (https://github.com/danielriosgarza/NutritionOrNature/blob/main/Scripts/correlation_table.py)
+To make the heatmap in Figure 4, we used the script [correlation_table.py](https://github.com/danielriosgarza/NutritionOrNature/blob/main/Scripts/correlation_table.py)
 
-To make the KDE plots of Figures S2 and S3, we used the scripts [violinplotsNatfreq.py] (https://github.com/danielriosgarza/NutritionOrNature/blob/main/Scripts/violinplotsNatfreq.py) and [violinplotsEDS.py] (https://github.com/danielriosgarza/NutritionOrNature/blob/main/Scripts/violinplotsEDS.py), respectively.
+To make the KDE plots of Figures S2 and S3, we used the scripts [violinplotsNatfreq.py](https://github.com/danielriosgarza/NutritionOrNature/blob/main/Scripts/violinplotsNatfreq.py) and [violinplotsEDS.py](https://github.com/danielriosgarza/NutritionOrNature/blob/main/Scripts/violinplotsEDS.py), respectively.
