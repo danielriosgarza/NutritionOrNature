@@ -61,7 +61,7 @@ print(store['Enterobacteriaceae']['y_metabolome']) #shows the exchange reaction 
 print(store['Enterobacteriaceae']['x_reactome']) #shows the reaction ids
 ```
 
-To link reaction ids to reaction objects, we suggest to use excellent [biochemistry] (https://github.com/ModelSEED/ModelSEEDDatabase/tree/master/Biochemistry) scripts from modelseed 
+To link reaction ids to reaction objects, we suggest to use the excellent [biochemistry] (https://github.com/ModelSEED/ModelSEEDDatabase/tree/master/Biochemistry) scripts from modelseed 
 
 ```python
 import Compounds
