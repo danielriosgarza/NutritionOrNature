@@ -6,13 +6,6 @@ Created on Mon Dec  7 14:08:39 2020
 """
 
 
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Sep 15 14:36:06 2020
-
-@author: danie
-"""
-
 
 from pylab import *
 from pathlib import Path

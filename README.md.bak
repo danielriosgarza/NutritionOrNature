@@ -39,50 +39,10 @@ em.write_model(panReac, outputModel)
 
 An example of a model reconstructed for the Aeromonadaceae family that is extensively described in the manuscript is available here: [Aeromonadaceae_reactome](https://github.com/danielriosgarza/NutritionOrNature/blob/main/Files/Aeromonadaceae.ensembl.sbml). 
 
-For access to the reactions of the other pan-reactomes, one can use our pickle:
-
-```python
-from pathlib import Path
-import pickle
-import os
-
-
-data_folder = os.path.join(Path(os.getcwd()).parents[0], 'Files', 'data')
-
-store =  pickle.load(open(data_folder + '/pickles/all_fams.tertiaryDS.pkl', 'rb'))
-
-store.pop('Bacillaceae_plus_Anaplasmataceae', None)
-
-print(store.keys())
-
-print(store['Enterobacteriaceae'].keys())
-
-print(store['Enterobacteriaceae']['y_metabolome']) #shows the exchange reaction ids
-print(store['Enterobacteriaceae']['x_reactome']) #shows the reaction ids
-```
-
-To link reaction ids to reaction objects, we suggest to use excellent [biochemistry scripts from modelseed] (https://github.com/ModelSEED/ModelSEEDDatabase/tree/master/Biochemistry)
-
-```python
-import Compounds
-import Reactions
-
-#Use script from ModelSEED biochemistry to parse all metabolite/reaction info
-compounds_helper = Compounds()
-compounds_dict = compounds_helper.loadCompounds() #dictionary linked to mSEED id contains all the database information about the metabolites.
-
-reactions_helper = Reactions()
-reactions_dict = reactions_helper.loadReactions() #dictionary linked to mSEED id has contains the database information about the reactions.
-
-```
-
-
 
 3) The toy model example
 
 The code for building and simulating the toy model is available through the script [ToyModelSimulator.py](https://github.com/danielriosgarza/NutritionOrNature/blob/main/Scripts/toyModelSimulator.py). The script can be runned directly in a python environment and generates a pickle that contains a dictionary named "store" with all the relevant information about the toy model simulation. The script takes some hours to complete (due to the Moran process).
-
-To generate the same Figures run the script [toy_model_Figures.py] (https://github.com/danielriosgarza/NutritionOrNature/blob/main/Scripts/toy_model_Figures.py)
 
 4) generate panEFMs
 
@@ -107,14 +67,7 @@ start_env=end_env-20
 
 To analyze panEFMs generated from a family-level pan-reactome we used the script [analyzePanEFMs.py](https://github.com/danielriosgarza/NutritionOrNature/blob/main/Scripts/analyzePanEFMs.py). This script first calls the class [parse_panEFM_class.py](https://github.com/danielriosgarza/NutritionOrNature/blob/main/Scripts/parse_panEFM_class.py) that parses the simulation results and gets all the necessary information from strain-level models, next a python dictionary with all the metrics (distances, scores, etc is stored in a pickle).
 
-To make the UMAP Figures, we used the script [make_freq_UMAP.py] (https://github.com/danielriosgarza/NutritionOrNature/blob/main/Scripts/make_freq_UMAP.py)
 
 5) Get Elastic net prediction
 
 An illustrative example of the code we used to build elastic net models is the script [EN_Predictions.py](https://github.com/danielriosgarza/NutritionOrNature/blob/main/Scripts/EN_Predictions.py).
-
-6) Miscellaneous
-
-To make the heatmap in Figure 4, we used the script [correlation_table.py] (https://github.com/danielriosgarza/NutritionOrNature/blob/main/Scripts/correlation_table.py)
-
-To make the KDE plots of Figures S2 and S3, we used the scripts [violinplotsNatfreq.py] (https://github.com/danielriosgarza/NutritionOrNature/blob/main/Scripts/violinplotsNatfreq.py) and [violinplotsEDS.py] (https://github.com/danielriosgarza/NutritionOrNature/blob/main/Scripts/violinplotsEDS.py), respectively.
