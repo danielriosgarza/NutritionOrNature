@@ -23,7 +23,7 @@ print(ev.metabolites)
 
 2) Create family-level pan-reactomes:
 
-We begin with a database of draft reconstructions of strain-level genome-scale metabolic models (GSMMs) listed in [TableS2](https://github.com/danielriosgarza/NutritionOrNature/blob/main/Table_S2.xlsx). The models were reconstructed using [ModelSEED](https://modelseed.org/) and are available on request.
+We begin with a database of draft reconstructions of strain-level genome-scale metabolic models (GSMMs) listed in [TableS2](https://github.com/danielriosgarza/NutritionOrNature/blob/main/Table_S2.xlsx). The models were reconstructed using [ModelSEED](https://modelseed.org/), the reaction lists are available in the Python pickle describes below.
 
 To create family-level pan-reactomes we used the script [create_panReactome_model.py](https://github.com/danielriosgarza/NutritionOrNature/blob/main/Scripts/create_panReactome_model.py). 
 
