@@ -27,7 +27,7 @@ class Env_ball:
         self.rn = int(number_of_realizations)
         
         
-        path=os.getcwd().replace('scripts', 'files')
+        path=os.getcwd().replace('Scripts', 'files')
         
         self.path=os.path.join(path,'env_ball_' + str(self.rn) +'.tsv') 
         
@@ -64,7 +64,7 @@ class Env_ball:
         oxygen = self.transporters.index('EX_cpd00007_e')
         i=np.arange(len(self.transporters))
         mat = self.matrix.T[(i!=water) & (i!=oxygen)].T
-        trans = umap.UMAP(n_neighbors=30, random_state=666, n_components=2, min_dist=.8).fit(mat)
+        trans = umap.UMAP(n_neighbors=30, random_state=666, n_components=n, min_dist=.8).fit(mat)
         return trans
     
     def plot(self, color='green', edge_c = 'k', size= 20, line_w = .25, cmap=plt.cm.Greens):
