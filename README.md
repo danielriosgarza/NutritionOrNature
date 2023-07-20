@@ -1,6 +1,6 @@
 # NutritionOrNature
 
-Repository of figures and scripts used in the manuscript: [Nutrition or nature: disentangling the complex forces shaping prokaryote pan-genomes](https://www.biorxiv.org/content/10.1101/2020.12.14.422685v3)
+Repository of figures and scripts used in the manuscript: [Nutrition or nature: disentangling the complex forces shaping prokaryote pan-genomes](https://bmcecolevol.biomedcentral.com/articles/10.1186/s12862-022-02052-3)
 
 Below is a guide to enable readers to reproduce our results. The scripts depend on python3 and 2.7, and the packages cobrapy, gurobi, numpy, sklearn, and scipy. 
 
